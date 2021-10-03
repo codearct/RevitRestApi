@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Core.Entities;
+using System;
 using System.Collections.Generic;
 
 #nullable disable
 
 namespace Entities.Concrete
 {
-    public partial class DesignOption
+    public partial class DesignOption:IEntity
     {
         public DesignOption()
         {

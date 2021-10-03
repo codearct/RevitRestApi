@@ -1,25 +1,24 @@
-﻿using System;
+﻿using Core.Entities;
+using System;
 using System.Collections.Generic;
 
 #nullable disable
 
 namespace Entities.Concrete
 {
-    public partial class Room
+    public partial class Room:IEntity
     {
         public Room()
         {
             RoomAssociations = new HashSet<RoomAssociation>();
             RoomFromToAssociationFromRoomNavigations = new HashSet<RoomFromToAssociation>();
-            RoomFromToAssociationToRoomNavigations = new HashSet<RoomFromToAssociation>();
         }
-
         public int Id { get; set; }
         public int? DesignOption { get; set; }
         public int? PhaseId { get; set; }
         public string Comments { get; set; }
         public double? Volume { get; set; }
-        public double? Perimeter { get; set; }
+        public double? Perimeter { get; set; } 
         public int? Level { get; set; }
         public string Occupancy { get; set; }
         public string Department { get; set; }
