@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Http;
 
 #nullable disable
 
@@ -9,6 +10,7 @@ namespace DataAccess.Concrete.Ef
 {
     public partial class RevitSampleProjectDBContext : DbContext
     {
+        public static string ConnectionString { get; set; }
         public RevitSampleProjectDBContext()
         {
         }
@@ -279,10 +281,11 @@ namespace DataAccess.Concrete.Ef
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=RevitSampleProjectDB;Trusted_Connection=True;");
-            }
+            //if (!optionsBuilder.IsConfigured)
+            //{
+            //    optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=SampleRevitProjectDB;Trusted_Connection=True;");
+            //}
+            if (!string.IsNullOrEmpty(ConnectionString)) optionsBuilder.UseSqlServer($"Server=(localdb)\\MSSQLLocalDB;Database={ConnectionString};Trusted_Connection=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

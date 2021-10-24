@@ -23,8 +23,9 @@ namespace RevitWebAPI.Controllers
             var result = _roomService.GetAll();
             return Ok(result);
         }
+
         [HttpGet("{roomNumber}")]
-        public IActionResult GetMovieById(int roomNumber)
+        public IActionResult GetRoomByNumber(int roomNumber)
         {
             var result = _roomService.GetByNumber(roomNumber);
 

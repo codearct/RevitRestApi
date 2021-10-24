@@ -12,12 +12,12 @@ namespace Entities.Concrete
         public string AreaType { get; set; }
         public string Comments { get; set; }
         public double? Perimeter { get; set; }
-        public int? Level { get; set; }
+        public int? Level { get; set; } // mapping
         public double? Area1 { get; set; }
         public string Number { get; set; }
         public string Name { get; set; }
 
         public virtual AreaScheme AreaScheme { get; set; }
-        public virtual Level LevelNavigation { get; set; }
+        public virtual Level LevelNavigation { get; set; } // mapping
     }
 }
