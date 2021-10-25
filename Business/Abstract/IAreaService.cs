@@ -1,4 +1,5 @@
 ﻿using Business.ViewModel.AreaVM;
+using Core.Utilities.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Business.Abstract
 {
     public interface IAreaService
     {
-        List<AreaViewModel> GetAll();
-        AreaViewModel GetByNumber(int areaNumber);
+        IDataResult<List<AreaViewModel>> GetAll();
+        IDataResult<AreaViewModel> GetByNumber(int areaNumber);
     }
 }

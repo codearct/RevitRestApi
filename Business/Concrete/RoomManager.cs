@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Business.Abstract;
+using Business.Constants;
 using Business.ViewModel.RoomVM;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using System;
 using System.Collections.Generic;
@@ -19,18 +21,26 @@ namespace Business.Concrete
             _mapper = mapper;
             _roomDal = roomDal;
         }
-        public List<RoomViewModel> GetAll()
+        public IDataResult<List<RoomViewModel>> GetAll()
         {
             var rooms = _roomDal.GetAll();
+
             List<RoomViewModel> roomVMs = _mapper.Map<List<RoomViewModel>>(rooms);
-            return roomVMs;
+
+            return new SuccessDataResult<List<RoomViewModel>>(roomVMs);
         }
 
-        public RoomViewModel GetByNumber(int roomNumber)
+        public IDataResult<RoomViewModel> GetByNumber(int roomNumber)
         {
             var room = _roomDal.GetByNumber(roomNumber);
+            if (room is null)
+            {
+                return new ErrorDataResult<RoomViewModel>(Messages.RoomNotExist);
+            }
+
             RoomViewModel roomVM = _mapper.Map<RoomViewModel>(room);
-            return roomVM;
+
+            return new SuccessDataResult<RoomViewModel>(roomVM);
         }
     }
 }

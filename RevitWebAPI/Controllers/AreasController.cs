@@ -22,7 +22,13 @@ namespace RevitWebAPI.Controllers
         public IActionResult GetAreas()
         {
             var result = _areaService.GetAll();
-            return Ok(result);
+
+            if (result.Success)
+            {
+                return Ok(result.Data);
+            }
+            return BadRequest(result.Message);
+ 
         }
 
         [HttpGet("{areaNumber}")]
@@ -30,7 +36,11 @@ namespace RevitWebAPI.Controllers
         {
             var result = _areaService.GetByNumber(areaNumber);
 
-            return Ok(result);
+            if (result.Success)
+            {
+                return Ok(result.Data);
+            }
+            return BadRequest(result.Message);
         }
     }
 }

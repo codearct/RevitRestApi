@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Business.Abstract;
+using Business.Constants;
 using Business.ViewModel.AreaVM;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using System;
 using System.Collections.Generic;
@@ -20,18 +22,26 @@ namespace Business.Concrete
             _areaDal = areaDal;
         }
 
-        public List<AreaViewModel> GetAll()
+        public IDataResult<List<AreaViewModel>> GetAll()
         {
             var areas = _areaDal.GetAll();
+
             List<AreaViewModel> areaVMs = _mapper.Map<List<AreaViewModel>>(areas);
-            return areaVMs;
+
+            return new SuccessDataResult<List<AreaViewModel>>(areaVMs);
         }
 
-        public AreaViewModel GetByNumber(int areaNumber)
+        public IDataResult<AreaViewModel> GetByNumber(int areaNumber)
         {
             var area = _areaDal.GetByNumber(areaNumber);
+            if (area is null)
+            {
+                return new ErrorDataResult<AreaViewModel>(Messages.AreaNotExist);
+            }
+
             AreaViewModel areaVM = _mapper.Map<AreaViewModel>(area);
-            return areaVM;
+
+            return new SuccessDataResult<AreaViewModel>(areaVM);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Business.ViewModel.RoomVM;
+using Core.Utilities.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Business.Abstract
 {
     public interface IRoomService
     {
-        List<RoomViewModel> GetAll();
-        RoomViewModel GetByNumber(int roomNumber);
+        IDataResult<List<RoomViewModel>> GetAll();
+        IDataResult<RoomViewModel> GetByNumber(int roomNumber);
     }
 }
