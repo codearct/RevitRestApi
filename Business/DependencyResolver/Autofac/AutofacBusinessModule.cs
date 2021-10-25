@@ -26,9 +26,10 @@ namespace Business.DependencyResolver.Autofac
             builder.RegisterType<AreaManager>().As<IAreaService>().SingleInstance();
             builder.RegisterType<EfAreaDal>().As<IAreaDal>().SingleInstance();
 
+            builder.RegisterType<WallManager>().As<IWallService>().SingleInstance();
+            builder.RegisterType<EfWallDal>().As<IWallDal>().SingleInstance();
+
             builder.RegisterType<ProjectManager>().As<IProjectService>().SingleInstance();
-
-
 
             builder.Register(context => new MapperConfiguration(cfg =>
             {

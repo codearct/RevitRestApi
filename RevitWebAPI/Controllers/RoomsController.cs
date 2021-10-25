@@ -22,13 +22,10 @@ namespace RevitWebAPI.Controllers
         {
             var result = _roomService.GetAll();
 
-            if (result.Success)
-            {
-                return Ok(result.Data);
-            }
+            return result.Success
+                ? Ok(result.Data)
+                : BadRequest(result.Message);
 
-            return BadRequest(result.Message);
-           
         }
 
         [HttpGet("{roomNumber}")]
@@ -36,12 +33,9 @@ namespace RevitWebAPI.Controllers
         {
             var result = _roomService.GetByNumber(roomNumber);
 
-            if (result.Success)
-            {
-                return Ok(result.Data);
-            }
-
-            return BadRequest(result.Message);
+            return result.Success
+                ? Ok(result.Data)
+                : BadRequest(result.Message);
         }
     }
 }

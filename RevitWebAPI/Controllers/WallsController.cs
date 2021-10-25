@@ -8,37 +8,37 @@ using System.Threading.Tasks;
 
 namespace RevitWebAPI.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class AreasController : ControllerBase
+    public class WallsController : ControllerBase
     {
-        private readonly IAreaService _areaService;
-        public AreasController(IAreaService areaService)
+        private readonly IWallService _wallService;
+
+        public WallsController(IWallService wallService)
         {
-            _areaService = areaService;
+            _wallService = wallService;
         }
 
         [HttpGet]
-        public IActionResult GetAreas()
+        public IActionResult GetWalls()
         {
-            var result = _areaService.GetAll();
-
-            return result.Success
-                ? Ok(result.Data)
-                : BadRequest(result.Message);
-
-
-
-        }
-
-        [HttpGet("{areaNumber}")]
-        public IActionResult GetRoomByNumber(int areaNumber)
-        {
-            var result = _areaService.GetByNumber(areaNumber);
+            var result = _wallService.GetAll();
 
             return result.Success
                 ? Ok(result.Data)
                 : BadRequest(result.Message);
         }
+
+        [HttpGet("{walltype}")]
+        public IActionResult GetWallsByType(string wallType)
+        {
+            var result = _wallService.GetByType(wallType);
+
+            return result.Success
+                ? Ok(result.Data)
+                : BadRequest(result.Message);
+
+        }
+
     }
 }
