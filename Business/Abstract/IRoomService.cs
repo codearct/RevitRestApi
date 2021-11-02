@@ -11,6 +11,6 @@ namespace Business.Abstract
     public interface IRoomService
     {
         IDataResult<List<RoomViewModel>> GetAll();
-        IDataResult<RoomViewModel> GetByNumber(int roomNumber);
+        IDataResult<RoomViewModel> GetById(int id);
     }
 }

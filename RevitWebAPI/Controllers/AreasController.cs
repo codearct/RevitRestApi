@@ -31,10 +31,10 @@ namespace RevitWebAPI.Controllers
 
         }
 
-        [HttpGet("{areaNumber}")]
-        public IActionResult GetRoomByNumber(int areaNumber)
+        [HttpGet("getbyid")]
+        public IActionResult GetAreaById(int id)
         {
-            var result = _areaService.GetByNumber(areaNumber);
+            var result = _areaService.GetById(id);
 
             return result.Success
                 ? Ok(result.Data)

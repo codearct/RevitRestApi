@@ -1,4 +1,4 @@
-﻿using Business.ViewModel.AreaVM;
+﻿using Business.ViewModel.DoorVM;
 using Core.Utilities.Results;
 using System;
 using System.Collections.Generic;
@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Business.Abstract
 {
-    public interface IAreaService
+    public interface IDoorService
     {
-        IDataResult<List<AreaViewModel>> GetAll();
-        IDataResult<AreaViewModel> GetById(int id);
+        IDataResult<List<DoorViewModel>> GetAll();
+        IDataResult<DoorViewModel> GetById(int id);
     }
 }

@@ -2,6 +2,7 @@
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,10 +31,10 @@ namespace DataAccess.Concrete.Ef
                     .ToList();
 
                 return rooms;
-            }           
+            }
         }
 
-        public Room GetByNumber(int roomNumber)
+        public Room GetById(int id)
         {
             using (RevitSampleProjectDBContext context = new RevitSampleProjectDBContext())
             {
@@ -47,8 +48,8 @@ namespace DataAccess.Concrete.Ef
                         .ThenInclude(ra => ra.ToRoomNavigation)
                     .Include(r => r.RoomFromToAssociationToRoomNavigations)
                         .ThenInclude(ra => ra.FromRoomNavigation)
-                    .SingleOrDefault(r => Convert.ToInt32(r.Number) == roomNumber);
-                
+                    .SingleOrDefault(r => r.Id==id);
+
                 return room;
             }
         }

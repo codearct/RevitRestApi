@@ -13,8 +13,6 @@ namespace Core.DataAccess.Ef
         where TEntity : class, new()
         where TContext : DbContext, new()
     {
-
-
         public TEntity Get(Expression<Func<TEntity, bool>> filter)
         {
             using TContext context = new();

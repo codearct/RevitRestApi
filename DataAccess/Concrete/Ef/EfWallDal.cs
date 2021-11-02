@@ -2,6 +2,7 @@
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,10 @@ namespace DataAccess.Concrete.Ef
 {
     public class EfWallDal : EfEntityRepositoryBase<Wall, RevitSampleProjectDBContext>, IWallDal
     {
+
         public ICollection<Wall> GetAll()
         {
-            using (RevitSampleProjectDBContext context=new RevitSampleProjectDBContext())
+            using (RevitSampleProjectDBContext context = new RevitSampleProjectDBContext())
             {
                 var walls = context.Walls
                     .Include(w => w.Type)
@@ -41,12 +43,12 @@ namespace DataAccess.Concrete.Ef
             }
         }
 
-        public ICollection<Wall> GetByType(string wallType)
+        public Wall GetById(int id)
         {
             using (RevitSampleProjectDBContext context = new RevitSampleProjectDBContext())
             {
-                var walls = context.Walls
-                    .Include(w=>w.Type)
+                var wall = context.Walls
+                    .Include(w => w.Type)
                     .Include(w => w.PhaseCreatedNavigation)
                     .Include(w => w.PhaseDemolishedNavigation)
                     .Include(w => w.DesignOptionNavigation)
@@ -63,10 +65,9 @@ namespace DataAccess.Concrete.Ef
                     .Include(w => w.PlumbingFixtureOnWalls)
                     .Include(w => w.RebarOnWalls)
                     .Include(w => w.WindowWalls)
-                    .Where(w => w.Type.TypeName == wallType)
-                    .ToList();
+                    .SingleOrDefault(w => w.Id == id);
 
-                return walls;
+                return wall;
             }
         }
     }

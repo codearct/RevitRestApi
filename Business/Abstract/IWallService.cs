@@ -11,6 +11,6 @@ namespace Business.Abstract
     public interface IWallService
     {
         IDataResult<List<WallViewModel>> GetAll();
-        IDataResult<List<WallViewModel>> GetByType(string wallType);
+        IDataResult<WallViewModel> GetById(int id);
     }
 }

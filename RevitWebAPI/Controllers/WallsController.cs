@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RevitWebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class WallsController : ControllerBase
     {
@@ -29,10 +29,10 @@ namespace RevitWebAPI.Controllers
                 : BadRequest(result.Message);
         }
 
-        [HttpGet("{walltype}")]
-        public IActionResult GetWallsByType(string wallType)
+        [HttpGet("getbyid")]
+        public IActionResult GetWallById(int id)
         {
-            var result = _wallService.GetByType(wallType);
+            var result = _wallService.GetById(id);
 
             return result.Success
                 ? Ok(result.Data)

@@ -10,5 +10,6 @@ namespace Business.Constants
     {
         public static string RoomNotExist = "Room was not found!";
         public static string AreaNotExist = "Area was not found!";
+        public static string WallNotExist = "Wall was not found!";
     }
 }

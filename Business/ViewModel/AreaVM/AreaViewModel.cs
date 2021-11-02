@@ -11,8 +11,8 @@ namespace Business.ViewModel.AreaVM
         public string Number { get; set; }
         public string Level { get; set; }
         public string Name { get; set; }
-        public double? Area { get; set; }
-        public double? Perimeter { get; set; }
+        public double Area { get; set; }
+        public double Perimeter { get; set; }
         public string AreaType { get; set; }
         public string Comments { get; set; }
         

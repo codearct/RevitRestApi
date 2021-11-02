@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Abstract;
+using Business.Constants;
 using Business.ViewModel.Wall;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -14,30 +15,35 @@ namespace Business.Concrete
     public class WallManager:IWallService
     {
         private readonly IMapper _mapper;
-        private readonly IWallDal _walldal;
+        private readonly IWallDal _wallDal;
 
-        public WallManager(IMapper mapper, IWallDal walldal)
+        public WallManager(IMapper mapper, IWallDal wallDal)
         {
             _mapper = mapper;
-            _walldal = walldal;
+            _wallDal = wallDal;
         }
 
         public IDataResult<List<WallViewModel>> GetAll()
         {
-            var walls = _walldal.GetAll();
+            var walls = _wallDal.GetAll();
 
             List<WallViewModel> wallVMs = _mapper.Map<List<WallViewModel>>(walls);
 
             return new SuccessDataResult<List<WallViewModel>>(wallVMs);
         }
 
-        public IDataResult<List<WallViewModel>> GetByType(string wallType)
+        public IDataResult<WallViewModel> GetById(int id)
         {
-            var walls = _walldal.GetByType(wallType);
+            var wall = _wallDal.GetById(id);
 
-            List<WallViewModel> wallVMs = _mapper.Map<List<WallViewModel>>(walls);
+            if (wall is null)
+            {
+                return new ErrorDataResult<WallViewModel>(Messages.WallNotExist);
+            }
 
-            return new SuccessDataResult<List<WallViewModel>>(wallVMs);
+            WallViewModel wallVM = _mapper.Map<WallViewModel>(wall);
+
+            return new SuccessDataResult<WallViewModel>(wallVM);
         }
     }
 }

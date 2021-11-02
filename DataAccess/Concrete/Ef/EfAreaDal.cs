@@ -25,13 +25,13 @@ namespace DataAccess.Concrete.Ef
             }
         }
 
-        public Area GetByNumber(int areaNumber)
+        public Area GetById(int id)
         {
             using (RevitSampleProjectDBContext context = new RevitSampleProjectDBContext())
             {
                 var area = context.Areas
                     .Include(a => a.LevelNavigation)
-                    .SingleOrDefault(a => Convert.ToInt32(a.Number) == areaNumber);
+                    .SingleOrDefault(a => a.Id==id);
 
                 return area;
             }

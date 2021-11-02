@@ -30,9 +30,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<RoomViewModel>>(roomVMs);
         }
 
-        public IDataResult<RoomViewModel> GetByNumber(int roomNumber)
+        public IDataResult<RoomViewModel> GetById(int id)
         {
-            var room = _roomDal.GetByNumber(roomNumber);
+            var room = _roomDal.GetById(id);
             if (room is null)
             {
                 return new ErrorDataResult<RoomViewModel>(Messages.RoomNotExist);

@@ -11,6 +11,6 @@ namespace DataAccess.Abstract
     public interface IRoomDal:IEntityRepository<Room>
     {
         ICollection<Room> GetAll();
-        Room GetByNumber(int roomNumber);
+        Room GetById(int id);
     }
 }

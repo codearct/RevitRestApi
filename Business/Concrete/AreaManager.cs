@@ -31,9 +31,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<AreaViewModel>>(areaVMs);
         }
 
-        public IDataResult<AreaViewModel> GetByNumber(int areaNumber)
+        public IDataResult<AreaViewModel> GetById(int id)
         {
-            var area = _areaDal.GetByNumber(areaNumber);
+            var area = _areaDal.GetById(id);
             if (area is null)
             {
                 return new ErrorDataResult<AreaViewModel>(Messages.AreaNotExist);

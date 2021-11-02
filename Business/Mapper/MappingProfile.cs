@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.ViewModel.AreaVM;
+using Business.ViewModel.DoorVM;
 using Business.ViewModel.RoomVM;
 using Business.ViewModel.Wall;
 using System;
@@ -59,6 +60,7 @@ namespace Business.Mapper
 
                 .ForMember(dest => dest.Perimeter, opt => opt.MapFrom(
                             src => Math.Round(Convert.ToDecimal(src.Perimeter), 2)));
+
 
             CreateMap<Entities.Concrete.Wall, WallViewModel>()
                 .ForMember(dest => dest.WallType, opt => opt.MapFrom(
@@ -129,6 +131,21 @@ namespace Business.Mapper
 
                 .ForMember(dest => dest.WindowOnWalls, opt => opt.MapFrom(
                             src => src.WindowWalls.Select(ww => ww.WindowName).ToList()));
+
+            CreateMap<Entities.Concrete.Door, DoorViewModel>()
+                .ForMember(dest => dest.DoorType, opt => opt.MapFrom(
+                            src => src.Type.FamilyName))
+                .ForMember(dest => dest.Level, opt => opt.MapFrom(
+                            src => src.LevelNavigation.Name))
+                .ForMember(dest => dest.Wall, opt => opt.MapFrom(
+                            src => src.DoorWall.WallName))
+                .ForMember(dest => dest.DesignOption, opt => opt.MapFrom(
+                            src => src.DesignOptionNavigation.Name))
+                .ForMember(dest => dest.PhaseCreated, opt => opt.MapFrom(
+                            src => src.PhaseCreatedNavigation.Name))
+                .ForMember(dest => dest.PhaseDemolished, opt => opt.MapFrom(
+                            src => src.PhaseDemolishedNavigation.Name));
+
 
 
 

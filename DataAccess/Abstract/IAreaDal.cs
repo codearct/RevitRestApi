@@ -10,6 +10,6 @@ namespace DataAccess.Abstract
     public interface IAreaDal
     {
         ICollection<Area> GetAll();
-        Area GetByNumber(int areaNumber);
+        Area GetById(int id);
     }
 }

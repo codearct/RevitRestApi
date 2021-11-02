@@ -29,6 +29,9 @@ namespace Business.DependencyResolver.Autofac
             builder.RegisterType<WallManager>().As<IWallService>().SingleInstance();
             builder.RegisterType<EfWallDal>().As<IWallDal>().SingleInstance();
 
+            builder.RegisterType<DoorManager>().As<IDoorService>().SingleInstance();
+            builder.RegisterType<EfDoorDal>().As<IDoorDal>().SingleInstance();
+
             builder.RegisterType<ProjectManager>().As<IProjectService>().SingleInstance();
 
             builder.Register(context => new MapperConfiguration(cfg =>

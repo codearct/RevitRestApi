@@ -8,30 +8,31 @@ using System.Threading.Tasks;
 
 namespace RevitWebAPI.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class RoomsController : ControllerBase
+    public class DoorsController : ControllerBase
     {
-        private readonly IRoomService _roomService;
-        public RoomsController(IRoomService roomService)
+        private readonly IDoorService _doorService;
+
+        public DoorsController(IDoorService doorService)
         {
-            _roomService = roomService;
+            _doorService = doorService;
         }
+
         [HttpGet]
-        public IActionResult GetRooms()
+        public IActionResult GetDoors()
         {
-            var result = _roomService.GetAll();
+            var result = _doorService.GetAll();
 
             return result.Success
                 ? Ok(result.Data)
                 : BadRequest(result.Message);
-
         }
 
         [HttpGet("getbyid")]
-        public IActionResult GetRoomById(int id)
+        public IActionResult GetDoorById(int id)
         {
-            var result = _roomService.GetById(id);
+            var result = _doorService.GetById(id);
 
             return result.Success
                 ? Ok(result.Data)

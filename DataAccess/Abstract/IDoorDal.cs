@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface IWallDal : IEntityRepository<Wall>
+    public interface IDoorDal:IEntityRepository<Door>
     {
-        ICollection<Wall> GetAll();
-        Wall GetById(int id);
+        ICollection<Door> GetAll();
+        Door GetById(int id);
     }
 }
